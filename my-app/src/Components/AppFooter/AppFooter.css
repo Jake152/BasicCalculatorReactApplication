@@ -1,0 +1,18 @@
+#app-footer-container {
+    height: 10rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0rem 1rem;
+    border-top: .2rem solid;
+    #app-description {
+        font-size: 2rem;
+        font-weight: bold;
+    }
+    #credentials-info {
+        font-size: 2rem;
+    }
+    #credentials-info span {
+        font-weight: bold;
+    }
+}

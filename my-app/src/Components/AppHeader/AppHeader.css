@@ -1,0 +1,12 @@
+#app-header-container {
+    height: 10rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0rem 1rem;
+    border-bottom: .2rem solid;
+    #app-header {
+        font-size: 2rem;
+        font-weight: bold;
+    }
+}
