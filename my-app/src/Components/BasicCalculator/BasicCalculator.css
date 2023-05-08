@@ -1,0 +1,16 @@
+#basic-calculator {
+    #basic-calculator-input {
+        width: -webkit-fill-available;
+        height: 5rem;
+        margin: 2rem 2rem;
+        padding: 0rem 1rem;
+        font-size: 3rem;
+        background-color: lightgoldenrodyellow;
+    }
+
+    #basic-calculator-row-1 {
+        margin: 0rem 2rem;
+        display: flex;
+        justify-content: space-between;
+    }
+}
