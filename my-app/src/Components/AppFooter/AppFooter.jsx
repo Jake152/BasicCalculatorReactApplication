@@ -1,12 +1,8 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 
 import './AppFooter.css'
 
 export default function AppFooter() {
-    useEffect(() => {
-        console.log('This is the app footer');
-    }, [])
-
     return (
         <div id='app-footer-container'>
             <div id='app-description'>
