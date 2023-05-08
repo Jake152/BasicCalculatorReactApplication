@@ -8,8 +8,8 @@
         background-color: lightgoldenrodyellow;
     }
 
-    #basic-calculator-row-1 {
-        margin: 0rem 2rem;
+    .basic-calculator-row {
+        margin: 2rem 2rem;
         display: flex;
         justify-content: space-between;
     }
