@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Col, Row } from 'react-bootstrap';
+import { Row } from 'react-bootstrap';
 import Input from '../../Common/Input/Input'
 import Button from '../../Common/Button/Button'
 
