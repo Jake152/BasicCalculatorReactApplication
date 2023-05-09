@@ -1,4 +1,8 @@
 #basic-calculator {
+    min-width: 50rem;
+    max-width: 50rem;
+    height: 46.875rem;
+    border: .2rem solid;
     #basic-calculator-input {
         width: -webkit-fill-available;
         height: 5rem;
