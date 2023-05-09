@@ -5,7 +5,7 @@ import ButtonContainer from './ButtonContainer/ButtonContainer';
 import './BasicCalculator.css'
 
 export default function BasicCalculator() {
-    const [inputValue, setInputValue] = useState('');
+    const [inputValue, setInputValue] = useState('0');
     const [nextValue, setNextValue] = useState('');
     const [initialValue, setInitialValue] = useState('');
     const [calculationValue, setCalculationValue] = useState('');
@@ -20,11 +20,11 @@ export default function BasicCalculator() {
 
     const handleCalculationChange = (calculationInput) => {
         setCalculationValue(calculationInput);
-        setInputValue('');
+        setInputValue(calculationInput);
     }
 
     const handleClearInput = () => {
-        setInputValue('');
+        setInputValue('0');
         setNextValue('');
         setInitialValue('');
         setCalculationValue('');
@@ -42,8 +42,14 @@ export default function BasicCalculator() {
         }
     }
 
+    const handlePercentage = () => {
+        const num = parseFloat(inputValue);
+        setInputValue(num / 100);
+    };
+
     const handleResult = () => {
-        const num1 = parseFloat(initialValue);
+        if (initialValue && calculationValue && nextValue) {
+            const num1 = parseFloat(initialValue);
         const num2 = parseFloat(nextValue);
         let result;
 
@@ -65,18 +71,25 @@ export default function BasicCalculator() {
             return;
         }
 
-        const resultString = parseFloat(result.toFixed(10)).toString();
+        const resultString = Number(result.toFixed(10)).toString();
         console.log(resultString);
         setInputValue(resultString);
+        setInitialValue(resultString);
+        setNextValue(''); // Comment this out to be able to keep clicking =
+        }
     };
       
 
     useEffect(() => {
-        setInputValue(initialValue);
+        if (initialValue) {
+            setInputValue(initialValue);
+        }
     }, [initialValue]);
 
     useEffect(() => {
-        setInputValue(nextValue);
+        if (nextValue) {
+            setInputValue(nextValue);
+        }
     }, [nextValue]);
 
     return (
@@ -86,6 +99,7 @@ export default function BasicCalculator() {
                 handleCalculationChange={handleCalculationChange} 
                 handleChange={handleChange} 
                 handleClearInput={handleClearInput} 
+                handlePercentage={handlePercentage}
                 handlePositiveNegative={handlePositiveNegative} 
                 handleResult={handleResult}
             />
