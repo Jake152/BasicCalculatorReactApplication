@@ -34,7 +34,11 @@ export default function BasicCalculator() {
         if (inputValue) {
             const firstChar = inputValue.charAt(0);
             const restOfString = inputValue.slice(1);
-            setInputValue(firstChar === '-' ? restOfString : '-' + inputValue);
+            if (calculationValue) {
+                setNextValue(firstChar === '-' ? restOfString : '-' + nextValue);
+            } else {
+                setInitialValue(firstChar === '-' ? restOfString : '-' + initialValue);
+            }
         }
     }
 
