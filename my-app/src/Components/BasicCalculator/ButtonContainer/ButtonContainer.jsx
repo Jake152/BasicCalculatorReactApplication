@@ -17,7 +17,7 @@ export default function ButtonContainer({ handleCalculationChange, handleChange,
                 <Button id='num-seven-btn' label='7' onClick={() => handleChange('7')}/>
                 <Button id='num-eight-btn' label='8' onClick={() => handleChange('8')}/>
                 <Button id='num-nine-btn' label='9' onClick={() => handleChange('9')}/>
-                <Button id='multiplication-btn' label='X' onClick={() => handleCalculationChange('x')}/>
+                <Button id='multiplication-btn' label='x' onClick={() => handleCalculationChange('x')}/>
             </Row>
             <Row id='basic-calculator-row-3' className='basic-calculator-row'>
                 <Button id='num-four-btn' label='4' onClick={() => handleChange('4')}/>
