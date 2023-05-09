@@ -5,29 +5,86 @@ import ButtonContainer from './ButtonContainer/ButtonContainer';
 import './BasicCalculator.css'
 
 export default function BasicCalculator() {
-    // Maybe do currentValue, calculationType, CalculationNumber, (On enter currentvalue changes based off calculation)
-    // const [calculationType, setCalculationType] = useState('');
-    const [inputValue, setInputValue] = useState(0);
+    const [inputValue, setInputValue] = useState('');
+    const [nextValue, setNextValue] = useState('');
+    const [initialValue, setInitialValue] = useState('');
+    const [calculationValue, setCalculationValue] = useState('');
 
-    const handleChange = (calculationInput) => {
-        console.log(calculationInput);
+    const handleChange = (input) => {
+        if (calculationValue) {
+            setNextValue(nextValue + input);
+        } else {
+            setInitialValue(initialValue + input);
+        }
+    }
+
+    const handleCalculationChange = (calculationInput) => {
+        setCalculationValue(calculationInput);
+        setInputValue('');
     }
 
     const handleClearInput = () => {
-        setInputValue(0);
+        setInputValue('');
+        setNextValue('');
+        setInitialValue('');
+        setCalculationValue('');
     }
 
     const handlePositiveNegative = () => {
         if (inputValue) {
-            setInputValue(inputValue >= 0 ? -Math.abs(inputValue) : Math.abs(inputValue));
+            const firstChar = inputValue.charAt(0);
+            const restOfString = inputValue.slice(1);
+            setInputValue(firstChar === '-' ? restOfString : '-' + inputValue);
         }
-      }
+    }
+
+    const handleResult = () => {
+        const num1 = parseFloat(initialValue);
+        const num2 = parseFloat(nextValue);
+        let result;
+
+        switch (calculationValue) {
+            case '+':
+            result = num1 + num2;
+            break;
+            case '-':
+            result = num1 - num2;
+            break;
+            case 'x':
+            result = num1 * num2;
+            break;
+            case '/':
+            result = num1 / num2;
+            break;
+            default:
+            console.error('Invalid calculation value');
+            return;
+        }
+
+        const resultString = parseFloat(result.toFixed(10)).toString();
+        console.log(resultString);
+        setInputValue(resultString);
+    };
       
+
+    useEffect(() => {
+        setInputValue(initialValue);
+    }, [initialValue]);
+
+    useEffect(() => {
+        setInputValue(nextValue);
+    }, [nextValue]);
 
     return (
         <div id='basic-calculator'>
-            <Input id='basic-calculator-input' type='number' inputValue={inputValue} setInputValue={setInputValue} />
-            <ButtonContainer handleChange={handleChange} handleClearInput={handleClearInput} handlePositiveNegative={handlePositiveNegative} />
+            <Input id='basic-calculator-input' type='text' inputValue={inputValue} setInputValue={setInputValue} />
+            <ButtonContainer 
+                handleCalculationChange={handleCalculationChange} 
+                handleChange={handleChange} 
+                handleClearInput={handleClearInput} 
+                handlePositiveNegative={handlePositiveNegative} 
+                handleResult={handleResult}
+            />
         </div>
     )
 }
